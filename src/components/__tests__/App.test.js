@@ -7,6 +7,16 @@ import App from 'components/App';
 import CommentBox from 'components/CommentBox';
 import CommentList from 'components/CommentList';
 
+let wrapped;
+
+beforeEach(() => {
+  //before each test inside of this file we're going to do some common setup logic
+  //let's render instance of App using our shallow function
+  wrapped = shallow(<App />);
+  //wrapped - meaning that the object returned from this is the wrapped version of our App component, wrapped - specifically means that this is a component that has some additional functionality loaded on top
+  //shallow render
+});
+
 it('renders to screen', () => {
   const div = document.createElement('div');
   //fake div created w JSDOM library, solely inside the memory, inside the terminal, not created in the DOM in the browser
@@ -19,10 +29,6 @@ it('renders to screen', () => {
 });
 
 it('shows a comment box', () => {
-  //let's render instance of App using our shallow function
-  const wrapped = shallow(<App />);
-  //wrapped - meaning that the object returned from this is the wrapped version of our App component, wrapped - specifically means that this is a component that has some additional functionality loaded on top
-
   //write some code (expectation) that looks inside the App - the wrapped object - and checks to see if the CommentBox is in there (CommentBox is here a placeholder, a bookmark of sorts for that component, it doesn't get rendered)
   expect(wrapped.find(CommentBox).length).toEqual(1);
   //we can check length because it is an array
@@ -33,8 +39,6 @@ it('shows a comment box', () => {
 });
 
 it('shows a comment list', () => {
-  const wrapped = shallow(<App />);
-  //shallow render
   expect(wrapped.find(CommentList).length).toEqual(1);
   //expectation
 });
