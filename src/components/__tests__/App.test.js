@@ -6,6 +6,7 @@ import { shallow } from 'enzyme';
 import App from 'components/App';
 import CommentBox from 'components/CommentBox';
 import CommentList from 'components/CommentList';
+import Root from 'Root';
 
 let wrapped;
 
@@ -21,7 +22,12 @@ it('renders to screen', () => {
   const div = document.createElement('div');
   //fake div created w JSDOM library, solely inside the memory, inside the terminal, not created in the DOM in the browser
 
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(
+    <Root>
+      <App />
+    </Root>,
+    div
+  );
 
   //cleanup after our test run
   //optimize app performance
