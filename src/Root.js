@@ -4,13 +4,15 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from 'reducers';
 
-const Root = (props) => {
+//with props destructuring we can make use of setting the initial/default state
+const Root = ({ children, initialState = {} }) => {
   return (
-    <Provider store={createStore(reducers, {})}>{props.children}</Provider>
+    <Provider store={createStore(reducers, initialState)}>{children}</Provider>
   );
 };
 //empty object passed into createStore signifies our initial state
-//we use createStore to pass Provider a store and the reducers we created
+//we will not pass it in this time, we will pass props.initialState instead, so that we can set it in when and how we need it in our tests
+//we use createStore to pass Provider a store and the reducers we created, to preserve state in our store
 
 export default Root;
 
