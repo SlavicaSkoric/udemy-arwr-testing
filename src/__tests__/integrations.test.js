@@ -55,5 +55,5 @@ it('can fetch a list of comments and display them', (done) => {
     //assert done to jest
     done();
     wrapped.unmount();
-  }, 500);
+  }, 1000);
 });
