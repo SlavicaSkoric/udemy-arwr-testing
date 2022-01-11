@@ -1,14 +1,20 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 //Provider is a React component that communicates directly with every connect function in our Redux app - they work together to give us/our components access to our Redux store
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import reduxPromise from 'redux-promise';
+//teaches Redux how to work with asynchronous action creators
 import reducers from 'reducers';
 
 //with props destructuring we can make use of setting the initial/default state
 const Root = ({ children, initialState = {} }) => {
-  return (
-    <Provider store={createStore(reducers, initialState)}>{children}</Provider>
+  const store = createStore(
+    reducers,
+    initialState,
+    applyMiddleware(reduxPromise)
   );
+
+  return <Provider store={store}>{children}</Provider>;
 };
 //empty object passed into createStore signifies our initial state
 //we will not pass it in this time, we will pass props.initialState instead, so that we can set it in when and how we need it in our tests
